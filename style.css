@@ -629,3 +629,70 @@ html, body{
     border: 2px solid #1E4D59;
     border-radius: 1rem;
 }
+
+/*Dúvida Frequentes*/
+
+#duvidasFrequentes{
+    background-color: #F6F1EA;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.duvidasInicio h6{
+    color: #8C5A37;
+    padding-top: 5rem;
+    padding-bottom: 2rem;;
+}
+
+.duvidasCards{
+    display: flex;
+    justify-content: center;
+    gap:3rem;
+}
+
+.cardDuvida{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #E6CFC2;
+    width:25.25rem;
+    height: 18.75rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0.75rem -0.75rem 0 #1E4D59;
+}
+
+.cardDuvida h6{
+    color: #8C5A37;
+    padding-top: 1rem;
+    padding-bottom: 0.2rem;;
+}
+
+.cardDuvida i{
+    margin-top: 0;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    background-color: #1E4D59;
+    color:#F6F1EA;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.c2{
+    box-shadow: 0.75rem -0.75rem 0 #6D2E46;  
+}
+
+.c2 i{
+    background-color: #6D2E46;
+}
+
+.c3{
+    box-shadow: 0.75rem -0.75rem 0 #7D8F69;   
+}
+
+.c3 i{
+    background-color: #7D8F69;
+}
