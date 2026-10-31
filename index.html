@@ -86,147 +86,214 @@
                 </div>
                 <div>
                     <div class="botaoseletor">
-                        <button class="bTodas">Todas</button>
-                        <button>Boxeadora</button>
-                        <button>Box Braids</button>
-                        <button>Ghana Braids</button>
-                        <button>Goddess Braids</button>
-                        <button>Gypsy Braids</button>
-                        <button>Nagô</button>
+                        <button class="ativo" data-filtro="todas">Todas</button>
+                        <button data-filtro="boxeadora">Boxeadora</button>
+                        <button data-filtro="box-braids">Box Braids</button>
+                        <button data-filtro="ghana-braids">Ghana Braids</button>
+                        <button data-filtro="goddess-braids">Goddess Braids</button>
+                        <button data-filtro="gypsy-braids">Gypsy Braids</button>
+                        <button data-filtro="nago">Nagô</button>
                     </div>
                     <div class="cardMae">
 
-                        <div class="CardmodeloTranca">
+                        <div class="CardmodeloTranca" data-categoria="boxeadora">
                             <img src="img/Boxeadora.jpeg" alt="Modelo de trança - Boxeadora">
                             <h6>Boxeadora</h6>
                             <h5>R$xx,xx</h5>
                             <div class="botaomodeloTranca">
                                 <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
                                         Agendar Horário</button></a>
-                                <button class="saibaBotao"><i class="bi bi-exclamation-circle"></i> Saiba Mais</button>
+                                <button class="saibaBotao" data-modelo="boxeadora">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
                             </div>
                         </div>
 
-                        <div class="CardmodeloTranca">
+                        <div class="CardmodeloTranca" data-="box-braids">
                             <img src="img/BoxTamChanel.jpeg" alt="Modelo de trança - Boxeadora">
-                            <h6>Boxeadora</h6>
+                            <h6>Box Tamanho Chanel</h6>
                             <h5>R$xx,xx</h5>
                             <div class="botaomodeloTranca">
                                 <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
                                         Agendar Horário</button></a>
-                                <button class="saibaBotao"><i class="bi bi-exclamation-circle"></i> Saiba Mais</button>
+                                <button class="saibaBotao" data-modelo="boxTamChanel">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
                             </div>
                         </div>
 
-                        <div class="CardmodeloTranca">
+                        <div class="CardmodeloTranca" data-="box-braids">
                             <img src="img/BoxTamMedio.jpeg" alt="Modelo de trança - Boxeadora">
-                            <h6>Boxeadora</h6>
+                            <h6>Box Tamanho Médio</h6>
                             <h5>R$xx,xx</h5>
                             <div class="botaomodeloTranca">
                                 <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
                                         Agendar Horário</button></a>
-                                <button class="saibaBotao"><i class="bi bi-exclamation-circle"></i> Saiba Mais</button>
+                                <button class="saibaBotao" data-modelo="boxTamMedio">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
                             </div>
                         </div>
 
-                        <div class="CardmodeloTranca">
+                        <div class="CardmodeloTranca" data-="box-braids">
                             <img src="img/BoxTamCintura.jpeg" alt="Modelo de trança - Boxeadora">
-                            <h6>Boxeadora</h6>
+                            <h6>Box Tamanho Cintura</h6>
                             <h5>R$xx,xx</h5>
                             <div class="botaomodeloTranca">
                                 <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
                                         Agendar Horário</button></a>
-                                <button class="saibaBotao"><i class="bi bi-exclamation-circle"></i> Saiba Mais</button>
+                                <button class="saibaBotao" data-modelo="boxTamCintura">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
                             </div>
                         </div>
 
-                        <div class="CardmodeloTranca">
+                        <div class="CardmodeloTranca" data-="ghana-braids">
                             <img src="img/GhanaBraids.jpeg" alt="Modelo de trança - Boxeadora">
-                            <h6>Boxeadora</h6>
+                            <h6>Ghana Braids</h6>
                             <h5>R$xx,xx</h5>
                             <div class="botaomodeloTranca">
                                 <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
                                         Agendar Horário</button></a>
-                                <button class="saibaBotao"><i class="bi bi-exclamation-circle"></i> Saiba Mais</button>
+                                <button class="saibaBotao" data-modelo="GhanaBraids">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
                             </div>
                         </div>
 
-                        <div class="CardmodeloTranca">
+                        <div class="CardmodeloTranca" datao="ghana-braids">
                             <img src="img/GhanaBraidsCcachos.jpeg" alt="Modelo de trança - Boxeadora">
-                            <h6>Boxeadora</h6>
+                            <h6>Ghana Braids com Cachos</h6>
                             <h5>R$xx,xx</h5>
                             <div class="botaomodeloTranca">
                                 <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
                                         Agendar Horário</button></a>
-                                <button class="saibaBotao"><i class="bi bi-exclamation-circle"></i> Saiba Mais</button>
+                                <button class="saibaBotao" data-modelo="GhanaBraidsCcachos">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
                             </div>
                         </div>
 
-                        <div class="CardmodeloTranca">
+                        <div class="CardmodeloTranca" data-="goddess-braids">
                             <img src="img/GoddessTamChanel.jpeg" alt="Modelo de trança - Boxeadora">
-                            <h6>Boxeadora</h6>
+                            <h6>Goddes Tamanho Chanel</h6>
                             <h5>R$xx,xx</h5>
                             <div class="botaomodeloTranca">
                                 <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
                                         Agendar Horário</button></a>
-                                <button class="saibaBotao"><i class="bi bi-exclamation-circle"></i> Saiba Mais</button>
+                                <button class="saibaBotao" data-modelo="GoddessTamChanel">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
                             </div>
                         </div>
 
-                        <div class="CardmodeloTranca">
+                        <div class="CardmodeloTranca" data-="goddess-braids">
                             <img src="img/GoddessTamMedia.jpeg" alt="Modelo de trança - Boxeadora">
-                            <h6>Boxeadora</h6>
+                            <h6>Goddes Tamanho Médio</h6>
                             <h5>R$xx,xx</h5>
                             <div class="botaomodeloTranca">
                                 <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
                                         Agendar Horário</button></a>
-                                <button class="saibaBotao"><i class="bi bi-exclamation-circle"></i> Saiba Mais</button>
+                                <button class="saibaBotao" data-modelo="GoddessTamMedia">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
                             </div>
                         </div>
 
-                        <div class="CardmodeloTranca">
+                        <div class="CardmodeloTranca" data-="goddess-braids">
                             <img src="img/GoddesTamCintura.jpeg" alt="Modelo de trança - Boxeadora">
-                            <h6>Boxeadora</h6>
+                            <h6>Goddes Tamanho Cintura</h6>
                             <h5>R$xx,xx</h5>
                             <div class="botaomodeloTranca">
                                 <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
                                         Agendar Horário</button></a>
-                                <button class="saibaBotao"><i class="bi bi-exclamation-circle"></i> Saiba Mais</button>
+                                <button class="saibaBotao" data-modelo="GoddessTamCintura">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
                             </div>
                         </div>
 
-                        <div class="CardmodeloTranca">
+                        <div class="CardmodeloTranca" data-="gypsy-braids">
+                            <img src="img/GypsyEspP.jpeg" alt="Modelo de trança - Boxeadora">
+                            <h6>Gypsy Braids Espessura P</h6>
+                            <h5>R$xx,xx</h5>
+                            <div class="botaomodeloTranca">
+                                <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
+                                        Agendar Horário</button></a>
+                                <button class="saibaBotao" data-modelo="GoddessTamCintura">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="CardmodeloTranca" data-="gypsy-braids">
+                            <img src="img/GypsyEspM.jpeg" alt="Modelo de trança - Boxeadora">
+                            <h6>Gypsy Braids Espessura M</h6>
+                            <h5>R$xx,xx</h5>
+                            <div class="botaomodeloTranca">
+                                <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
+                                        Agendar Horário</button></a>
+                                <button class="saibaBotao" data-modelo="GoddessTamCintura">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="CardmodeloTranca" data-="gypsy-braids">
+                            <img src="img/GypsyEspG.jpeg" alt="Modelo de trança - Boxeadora">
+                            <h6>Gypsy Braids Espessura G</h6>
+                            <h5>R$xx,xx</h5>
+                            <div class="botaomodeloTranca">
+                                <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
+                                        Agendar Horário</button></a>
+                                <button class="saibaBotao" data-modelo="GoddessTamCintura">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="CardmodeloTranca" data-="nago">
                             <img src="img/NagoMasculina.jpeg" alt="Modelo de trança - Boxeadora">
-                            <h6>Boxeadora</h6>
+                            <h6>Nagô Masculina</h6>
                             <h5>R$xx,xx</h5>
                             <div class="botaomodeloTranca">
                                 <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
                                         Agendar Horário</button></a>
-                                <button class="saibaBotao"><i class="bi bi-exclamation-circle"></i> Saiba Mais</button>
+                                <button class="saibaBotao" data-modelo="NagoMasculina">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
                             </div>
                         </div>
 
-                        <div class="CardmodeloTranca">
+                        <div class="CardmodeloTranca" data-="nago">
                             <img src="img/NagoTiara.jpeg" alt="Modelo de trança - Boxeadora">
-                            <h6>Boxeadora</h6>
+                            <h6>Nagô Tiara</h6>
                             <h5>R$xx,xx</h5>
                             <div class="botaomodeloTranca">
                                 <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
                                         Agendar Horário</button></a>
-                                <button class="saibaBotao"><i class="bi bi-exclamation-circle"></i> Saiba Mais</button>
+                                <button class="saibaBotao" data-modelo="NagoTira">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
                             </div>
                         </div>
 
-                        <div class="CardmodeloTranca">
+                        <div class="CardmodeloTranca" data-="nago">
                             <img src="img/NagoTopo1.jpeg" alt="Modelo de trança - Boxeadora">
-                            <h6>Boxeadora</h6>
+                            <h6>Nagô Topo</h6>
                             <h5>R$xx,xx</h5>
                             <div class="botaomodeloTranca">
                                 <a href="#queroAgendar" class="agendaBotao"><button><i class="bi bi-calendar-check"></i>
                                         Agendar Horário</button></a>
-                                <button class="saibaBotao"><i class="bi bi-exclamation-circle"></i> Saiba Mais</button>
+                                <button class="saibaBotao" data-modelo="NagoTopo">
+                                    <i class="bi bi-exclamation-circle"></i> Saiba Mais
+                                </button>
                             </div>
                         </div>
+
+                        <p class="semModelos" id="semModelos" hidden>
+                            Ainda não temos modelos nessa categoria. Fale com a gente pelo WhatsApp!
+                        </p>
 
                     </div>
                     <div class="modelotrancaFinal">
@@ -493,7 +560,7 @@
                             ainda mais confiante. É isso que eu quero que você leve do meu trabalho.</p>
                         <div class="alinhamentoSM">
                             <a href=""><button><i class="bi bi-whatsapp"></i> WhatsApp</button></a>
-                            <a href=""><button class="saibaBotao" ><i class="bi bi-instagram"></i> Instagram</button></a>
+                            <a href=""><button class="saibaBotao"><i class="bi bi-instagram"></i> Instagram</button></a>
                         </div>
                     </div>
                     <div>
@@ -505,7 +572,7 @@
                     <h1>O que move o meu trabalho?</h1>
                 </div>
                 <div class="moveSM">
-                    
+
                     <div class="SM">
                         <h6>Técnica</h6>
                         <p>Acabamento e atenção aos detalhes, do primeiro fio à última ponta.</p>
@@ -519,62 +586,104 @@
                         <p>Um atendimento pensado para você, com conforto e respeito ao seu cabelo.</p>
                     </div>
                 </div>
-                <div>
-                    <div>
-                        <h6>07 +</h6>
+                <div class="estatisticas">
+                    <div class="estatistica">
+                        <strong>07+</strong>
                         <p>anos de experiência</p>
                     </div>
-                    <div>
-                        <h6>1680 +</h6>
+
+                    <div class="estatistica">
+                        <strong>1680+</strong>
                         <p>clientes atendidas</p>
                     </div>
-                    <div>
-                        <h6>10 +</h6>
+
+                    <div class="estatistica">
+                        <strong>10+</strong>
                         <p>modelos de tranças</p>
                     </div>
                 </div>
             </section>
 
         </main>
-        <footer>
-            <div>
-                <div><img src="img/logoafropatos.png" alt="Logo AfroPatos"></div>
+        <footer id="footerrodape">
+            <div class="rodape">
                 <div>
                     <h6>TRANCISTA - AFROPATOS</h6>
-                    <p>Tranças</p>
+                    <p>Tranças feitas com cuidado, técnica e personalidade em Patos de Minas.</p>
                     <a href="#queroAgendar"><button>Agendar minha trança</button></a>
                 </div>
-                <div>
+                <div class="rNavegue">
                     <h6>NAVEGUE</h6>
-                    <a href="#inicio">Início</a>
-                    <a href="#modeloTrancas">Modelo de Tranças</a>
-                    <a href="#queroAgendar">Quero Agendar</a>
-                    <a href="#duvidasFrequentes">Dúvidas Frequentes</a>
-                    <a href="#sobreMim">Sobre Mim</a>
+                    <ul>
+                        <li>
+                            <a href="#inicio">Início</a>
+                        </li>
+                        <li>
+                            <a href="#modeloTrancas">Modelo de Tranças</a>
+                        </li>
+                        <li>
+                            <a href="#queroAgendar">Quero Agendar</a>
+                        </li>
+                        <li>
+                            <a href="#duvidasFrequentes">Dúvidas Frequentes</a>
+                        </li>
+                        <li>
+                            <a href="#sobreMim">Sobre Mim</a>
+                        </li>
+                    </ul>
                 </div>
-                <div>
+                <div class="rNavegue">
                     <h6>FALE COMIGO</h6>
-                    <div>
-                        <p>WhatsApp: </p>
-                        <a href="">(xx)x xxxx-xxxx</a>
-                    </div>
-                    <div>
-                        <p>Instagram: </p>
-                        <a href="">@afros_patosdeminas</a>
-                    </div>
-                    <div>
-                        <p>Localização: </p>
-                        <a href=""> R. Patrocínio, 160 - Santo Antônio, Patos de Minas - MG</a>
-                    </div>
-                    <div>
-                        <p>Atendimentos aos domingos e feriados.</p>
-                    </div>
+                    <ul>
+                        <li>
+                            <div class="falerodape">
+                                <p>WhatsApp: </p>
+                                <a href="">(xx)x xxxx-xxxx</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="falerodape">
+                                <p>Instagram: </p>
+                                <a href="">@afros_patosdeminas</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="falerodape">
+                                <p>Localização: </p>
+                                <a href=""> R. Patrocínio, 160 - Santo Antônio, Patos de Minas - MG</a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
+            <div class="rodapeAli">
+                <a href="">© 2026 Afro Patos. Todoas os direitos reservados.</a>
+                <p class="creditoDesenvolvedor"> Desenvolvido por <a
+                        href="https://moralesthalys-portfolio.netlify.app/"> Thalys Morales</a>
+                </p>
+            </div>
+
+            <dialog id="modalModelo" class="modalModelo" aria-labelledby="modalTitulo">
+                <button class="modalFechar" aria-label="Fechar"><i class="bi bi-x-lg"></i></button>
+
+                <h6>SAIBA MAIS</h6>
+                <h3 id="modalTitulo"></h3>
+                <p id="modalDescricao"></p>
+
+                <div class="modalFotos" id="modalFotos"></div>
+
+                <ul class="modalDetalhes" id="modalDetalhes"></ul>
+
+                <a href="#queroAgendar" class="modalAgendar" id="modalAgendar">
+                    <i class="bi bi-calendar-check"></i> Agendar este modelo
+                </a>
+            </dialog>
         </footer>
         <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL"
             crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
         <script src="interactive.js"></script>
     </body>
 
