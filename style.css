@@ -24,6 +24,15 @@ body {
     position: fixed;
 }
 
+.navegador {
+    z-index: 100;
+}
+
+.menuBtn {
+    display: none;
+}
+
+
 .logo {
     display: flex;
     justify-content: flex-start;
@@ -43,14 +52,14 @@ body {
     padding-right: 2rem;
 }
 
-.itensNav a{
+.itensNav a {
     position: relative;
     padding: 0.25rem 0;
     text-decoration: none;
     color: #24140D;
 }
 
-.itensNav a::after{
+.itensNav a::after {
     content: "";
     position: absolute;
     left: 50%;
@@ -63,11 +72,11 @@ body {
 }
 
 .itensNav a.active::after,
-.itensNav a:hover::after{
+.itensNav a:hover::after {
     width: 60%;
 }
 
-.itensNav a.active{
+.itensNav a.active {
     font-weight: 700;
 }
 
@@ -132,7 +141,7 @@ body {
 }
 
 .inicioTopo img {
-    
+
     width: 50rem;
     height: 25rem;
     object-fit: cover;
@@ -161,6 +170,10 @@ body {
     display: flex;
     padding-top: 4rem;
     gap: 3rem;
+}
+
+.iflinha3Mae {
+    display: flex;
 }
 
 .iflinha1 h1 {
@@ -244,20 +257,21 @@ body {
     padding-bottom: 2rem;
     padding-left: 5rem;
 }
-.botaoseletor button{
+
+.botaoseletor button {
     cursor: pointer;
 }
 
-.botaoseletor button.ativo{
+.botaoseletor button.ativo {
     background-color: #6D2E46;
     color: #E9DFD3;
 }
 
-.CardmodeloTranca[hidden]{
+.CardmodeloTranca[hidden] {
     display: none;
 }
 
-.semModelos{
+.semModelos {
     text-align: center;
     padding: 2rem 1rem;
     color: #8C5A37;
@@ -627,6 +641,112 @@ body {
     width: 100%;
     min-width: 0;
 
+}
+
+/*Validação do formulário*/
+
+.formularioitens .invalido {
+    border-color: #6D2E46;
+    background-color: #F3E7E9;
+}
+
+.erroCampo {
+    display: block;
+    padding-top: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #6D2E46;
+}
+
+.avisoForm {
+    margin-top: 0.75rem;
+    padding: 0.6rem 1rem;
+    border: 2px solid #6D2E46;
+    border-radius: 0.5rem;
+    background-color: #F3E7E9;
+    color: #6D2E46;
+    font-weight: 700;
+    text-align: center;
+}
+
+/*Mensagem de envio*/
+
+.modalMsg {
+    width: min(26rem, 92vw);
+    padding: 2rem 1.5rem 1.5rem;
+    border: 3px solid #7D8F69;
+    border-radius: 1rem;
+    background-color: #F6F1EA;
+    box-shadow: 0 -0.6rem 0 #7D8F69;
+    text-align: center;
+}
+
+.modalMsg::backdrop {
+    background-color: rgba(214, 184, 167, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+.msgIcone {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background-color: #7D8F69;
+}
+
+.msgIcone i {
+    font-size: 1.75rem;
+    color: #F6F1EA;
+}
+
+.modalMsg h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #24140D;
+}
+
+.modalMsg p {
+    margin: 0 0 1rem;
+}
+
+.msgResumo {
+    list-style: none;
+    margin: 0 0 1.25rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #E9DFD3;
+    text-align: left;
+}
+
+.msgResumo li {
+    padding: 0.15rem 0;
+}
+
+.msgBotao {
+    display: block;
+    padding: 0.7rem 1.5rem;
+    border-radius: 1rem;
+    background-color: #8C5A37;
+    color: #F6F1EA;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.msgBotao i {
+    padding-right: 0.25rem;
+    color: #F6F1EA;
+}
+
+.msgSecundario {
+    margin-top: 0.75rem;
+    border: none;
+    background: none;
+    color: #6D2E46;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -1089,7 +1209,7 @@ body {
     color: rgba(0, 0, 0, 0.85);
 }
 
-.rNavegue li{
+.rNavegue li {
     padding: 0.25rem;
 }
 
@@ -1180,8 +1300,8 @@ body:has(dialog[open]) {
 
 .modalFotos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    /* serve para 1, 2 ou 3 fotos */
+    grid-template-columns: repeat(3, 15rem);
+    justify-content: center;
     gap: 1rem;
     margin: 1.5rem 0;
 }
@@ -1227,7 +1347,7 @@ body:has(dialog[open]) {
 }
 
 @media (max-width: 768px) {
-
+   
     .navegador {
         background-color: #D6B8A7;
         display: flex;
@@ -1236,8 +1356,73 @@ body:has(dialog[open]) {
         padding: 1rem;
         width: 100%;
         height: 4.5rem;
-        position: fixed;
+        position: relative;
     }
+
+    .menuBtn {
+        display: grid;
+        place-content: center;
+        gap: 5px;
+        width: 2.75rem;
+        height: 2.75rem;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .menuBtn span {
+        display: block;
+        width: 1.5rem;
+        height: 2px;
+        border-radius: 2px;
+        background-color: #24140D;
+        transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .menuBtn[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .menuBtn[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menuBtn[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+
+    .navegador .itensNav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        background-color: #D6B8A7;
+        border-bottom: 3px solid #6D2E46;
+        transition: max-height 0.3s, visibility 0s 0.3s;
+    }
+
+    .navegador .itensNav.aberto {
+        max-height: 20rem;
+        visibility: visible;
+        transition: max-height 0.3s, visibility 0s;
+    }
+
+    .navegador .itensNav a {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .navegador .itensNav a::after {
+        bottom: 0.5rem;
+    }
+
 
     .logo {
         display: flex;
@@ -1266,9 +1451,10 @@ body:has(dialog[open]) {
     /*Início*/
 
     #inicio {
-        background-color: #E9DFD3;
-        padding-bottom: 4.5rem;
-        padding-top: 5.5rem;
+        padding-bottom: 0;
+        padding-top: 0;
+    
+        padding-left: 1rem !important;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1276,7 +1462,11 @@ body:has(dialog[open]) {
     }
 
     .alinhamento {
-        padding-left: 17rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 0;
         padding-top: 2rem;
     }
 
@@ -1284,64 +1474,54 @@ body:has(dialog[open]) {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-right: 10rem;
+        padding-right: 0;
     }
 
     .inicioTopo h6 {
-        font-size: 1rem;
+        font-size: 1.1428rem;
         color: #8C5A37;
     }
 
     .inicioTopo h1 {
-        font-size: 3rem;
-        width: 33rem;
-        font-weight: bold;
-        color: #24140D;
-    }
+        font-size: 1.5rem;
+        width: 23rem;
 
-    .inicioTopo p {
-        color: rgba(0, 0, 0, 0.85);
-        width: 20.3125rem;
     }
 
     .inicioTopo button {
-        background-color: #8C5A37;
-        color: #E9DFD3;
-        border: none;
-        border-radius: 1rem;
-        width: 17.5rem;
+        width: 12rem;
         height: 2.5rem;
+        font-size: 0.7rem;
     }
 
     .bAgendar i {
         padding-left: 0.5rem;
-        color: #E9DFD3 !important;
-        text-decoration: none;
+        font-size: 0.5rem;
     }
 
     .centralizaBotao {
-        padding-left: 1rem;
+        padding-left: 0;
         padding-bottom: 1rem;
     }
 
     .inicioTopo img {
-        width: 50rem;
-        height: 25rem;
+        width: 24rem;
+        height: 16rem;
         object-fit: cover;
         -webkit-mask-image:
-            linear-gradient(to right, transparent 0%, black 30%),
-            linear-gradient(to bottom, transparent 0%, black 8%);
+            linear-gradient(to right, transparent 0%, black 0),
+            linear-gradient(to bottom, transparent 0%, black 0);
         -webkit-mask-composite: source-in;
         mask-image:
-            linear-gradient(to right, transparent 0%, black 30%),
-            linear-gradient(to bottom, transparent 0%, black 8%);
+            linear-gradient(to right, transparent 0%, black 0),
+            linear-gradient(to bottom, transparent 0%, black 0);
         mask-composite: intersect;
+        padding-top: 1rem;
     }
 
     .inicioLinks {
         display: flex;
         flex-direction: column;
-
     }
 
     .inicioLinks a {
@@ -1359,255 +1539,275 @@ body:has(dialog[open]) {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        padding-top: 4rem;
-        gap: 3rem;
+        padding-top: 2rem;
+        gap: 0.5rem;
+    }
+
+    .iflinha3Mae {
+        display: flex !important;
+        gap: 0.5rem;
     }
 
     .iflinha1 h1 {
         font-size: 2rem;
-        width: 21.5625rem;
-        border-right: 2px solid #8C5A37;
-        padding-right: 1.5rem;
+        width: 22.5rem;
+        border-right: 0 solid #8C5A37;
+        padding-right: 0;
+        margin: 0;
     }
 
     .iflinha2 {
-        width: 16.5rem;
-        padding-top: 1.5rem;
+        margin: 0;
+        width: 21.3125rem;
+        padding-top: 0;
+        align-self: flex-start;
     }
 
     .iflinha3 {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 11.375rem;
+        width: 7rem;
         text-align: center;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .iflinha3 h6 {
+        font-weight: 700;
     }
 
     .corD i {
-        color: #6D2E46 !important;
+        font-size: 1.5rem;
     }
 
     .corT i {
-        color: #B88A44 !important;
+        font-size: 1.5rem;
     }
 
     .iflinha3 i {
-        color: #7D8F69;
-        padding-bottom: 0.5rem;
+        font-size: 1.5rem;
     }
 
     /*Modelo Tranças*/
 
-    #modeloTrancas {
-        background-color: #E9DFD3;
-        padding-top: 7rem;
-    }
+#modeloTrancas {
+    background-color: #E9DFD3;
+    padding: 2rem 0 1.5rem;
+}
 
-    .modeloTopo {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
+.modeloTopo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+}
 
-    .modeloTopo img {
-        width: 45.33125rem;
-        height: 26.375rem;
-        object-fit: cover;
-    }
+.modeloTopo img {
+    width: 100%;
+    max-width: 30rem;
+    height: auto;
+    aspect-ratio: 21.5625 / 12.0625;
+    object-fit: cover;
+}
 
-    .modeloTopo h6 {
-        padding-top: 2rem;
-        font-size: 1rem;
-        color: #8C5A37;
-    }
+.ajusteModelo {
+    width: 100%;
+    max-width: 30rem;
+    padding: 1.5rem 0 0;
+}
 
-    .modeloTopo h1 {
-        font-size: 3rem;
-        width: 25rem;
-        font-weight: bold;
-        color: #24140D;
-    }
+.modeloTopo h6 {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+}
 
-    .modeloTopo p {
-        color: rgba(0, 0, 0, 0.85);
-        width: 20.3125rem;
-    }
+.modeloTopo h1 {
+    width: auto;
+    margin: 0.25rem 0 0.5rem;
+    font-size: 1.5rem;
+}
 
-    .ajusteModelo {
-        padding-top: 4rem;
-        padding-left: 5rem;
-    }
+.modeloTopo p {
+    width: auto;
+    margin: 0;
+}
 
-    .botaoseletor {
-        display: flex;
-        gap: 1rem;
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-        padding-left: 5rem;
-    }
+/* filtros */
+.botaoseletor {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+    gap: 0.5rem;
+    padding: 1.5rem 1rem;
+}
 
-    .bTodas {
-        background-color: #6D2E46 !important;
-        color: #E9DFD3 !important;
-        border-radius: 1rem;
-        width: auto;
-        height: auto;
-    }
+.botaoseletor button {
+    width: auto;
+    height: auto;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8125rem;
+    border: 2px solid #6D2E46;
+    border-radius: 1rem;
+    background-color: transparent;
+    color: #24140D;
+}
 
-    .botaoseletor button {
-        background-color: transparent;
-        border: 2px solid #6D2E46;
-        color: #24140D;
-        border-radius: 1rem;
-        width: auto;
-        height: auto;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
+/* cards: 2 por linha */
+.cardMae {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0 0.75rem;
+}
 
-    .cardMae {
-        display: grid;
-        grid-template-columns: repeat(2, 17.5rem);
-        gap: 1rem;
-        justify-content: center;
-    }
+.semModelos {
+    flex: 0 0 100%;
+    margin: 0;
+}
 
-    .CardmodeloTranca {
-        width: 17.5rem;
-        height: auto;
-        background-color: #F6F1EA;
-        border-radius: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-    }
+.CardmodeloTranca {
+    flex: 0 0 calc(50% - 0.375rem);
+    max-width: 20rem;
+    width: auto;
+    box-sizing: border-box;
+    padding: 0.625rem;
+    justify-content: flex-start;
+    align-items: stretch;
+}
 
-    .CardmodeloTranca h6 {
-        color: #24140D;
-        justify-content: flex-start;
-        width: 16.3125rem;
-        padding-top: 0.5rem;
-        padding-left: 0.5rem;
-    }
+.CardmodeloTranca img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 0.75rem;
+}
 
-    .CardmodeloTranca h5 {
-        color: #3D2215;
-        justify-content: flex-start;
-        width: 16.3125rem;
-        padding-left: 1rem;
-    }
+.CardmodeloTranca h6 {
+    width: auto;
+    margin: 0.5rem 0 0.125rem;
+    padding: 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
 
-    .CardmodeloTranca img {
-        width: 16.3125rem;
-        height: 18.25rem;
-        object-fit: cover;
-        border-radius: 1rem;
-    }
+.CardmodeloTranca h5 {
+    width: auto;
+    margin: 0 0 0.5rem;
+    padding: 0;
+    font-size: 0.8125rem;
+    font-weight: 400;
+}
 
-    .botaomodeloTranca {
-        display: flex;
-        gap: 0.5rem;
-    }
+.botaomodeloTranca {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    margin-top: auto;            
+}
 
-    .botaomodeloTranca i {
-        color: #F6F1EA;
-    }
+.botaomodeloTranca i {
+    font-size: 0.875rem;
+    color: #F6F1EA;
+}
 
+.CardmodeloTranca .agendaBotao {
+    display: block;
+}
 
-    .agendaBotao button {
-        background-color: rgba(109, 46, 70, 0.6);
-        color: #F6F1EA;
-        width: 9rem;
-        border-radius: 1rem;
-        border: none;
-        padding: 0.5rem;
-    }
+.CardmodeloTranca .agendaBotao button,
+.CardmodeloTranca .saibaBotao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    width: 100%;
+    height: auto;
+    padding: 0.5rem 0.25rem;
+    font-size: 0.75rem;
+    border: none;
+    border-radius: 1rem;
+    color: #F6F1EA;
+}
 
-    .saibaBotao {
-        background-color: #7D8F69;
-        color: #F6F1EA;
-        width: 6.875rem;
-        border-radius: 1rem;
-        border: none;
-    }
+.CardmodeloTranca .agendaBotao button {
+    background-color: rgba(109, 46, 70, 0.6);
+}
 
-
-    .modelotrancaFinal {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding-top: 1.5rem;
-        padding-left: 2rem;
-        gap: 4rem;
-        background-color: rgba(140, 90, 55, 0.3);
-        padding: 1rem;
-        margin-top: 3rem;
-    }
-
-    .mflinha1 {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .mflinha1 h5 {
-        font-size: 2rem;
-        width: 20rem;
-        text-align: center;
-        border-right: 2px solid #8C5A37;
-        padding-right: 1.5rem;
-        padding-left: 0.5rem;
-    }
+.agendaBotao {
+    text-decoration: none !important;
+}
 
 
-    .mflinha1 button {
-        background-color: #8C5A37;
-        color: #E9DFD3;
-        border: none;
-        border-radius: 1.5rem;
-        width: 17.5rem;
-        height: 2.5rem;
-    }
+.modelotrancaFinal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+    padding: 1.5rem 1rem;
+    background-color: rgba(140, 90, 55, 0.3);
+}
 
-    .mflinha1 i {
-        padding-left: 0.5rem;
-        color: #E9DFD3 !important;
-        text-decoration: none;
-    }
+.mflinha1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
-    .mflinha1 h6 {
-        font-size: 1rem;
-        color: #8C5A37;
-    }
+.mflinha1 h6 {
+    margin: 0 0 0.25rem;
+    font-size: 0.875rem;
+    color: #8C5A37;
+}
 
-    .mflinha3 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 11.375rem;
-        text-align: center;
-    }
+.mflinha1 h5 {
+    width: auto;
+    max-width: 100%;
+    margin: 0 0 1rem;
+    padding: 0;
+    border-right: 0;
+    font-size: 1.375rem;
+    text-align: center;
+}
 
-    .mflinha3 i {
-        color: #1E4D59;
-        padding-bottom: 0.5rem;
-        font-size: 1.5rem;
-    }
+.mflinha1 button {
+    width: 15rem;
+    max-width: 100%;
+    height: 2.5rem;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 1.5rem;
+    background-color: #8C5A37;
+    color: #E9DFD3;
+}
 
-    .modelocorD i {
-        color: #B88A44 !important;
-    }
+.modelotrancaFinal .alinhamentoIFL {
+    width: 100%;
+    gap: 0.5rem;
+}
 
-    .modelocorT i {
-        color: #7D8F69 !important;
-    }
+.mflinha3 {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+}
 
+.mflinha3 h6 {
+    margin: 0 0 0.25rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+}
 
+.mflinha3 p {
+    margin: 0;
+    font-size: 0.75rem;
+}
     /*Quero Agendar*/
 
     #queroAgendar {
@@ -1618,8 +1818,8 @@ body:has(dialog[open]) {
     }
 
     .divqueroAgendar {
-        padding-top: 4.5rem;
-          display: flex;
+        padding-top: 1rem;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -1763,13 +1963,14 @@ body:has(dialog[open]) {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        padding-top: 1rem;
     }
 
     .agenda2 form {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 30rem;
+        width: 22rem;
         min-height: 37rem;
         border: 2px solid #24140D;
         border-radius: 1rem;
@@ -1828,8 +2029,6 @@ body:has(dialog[open]) {
         .linhaOpcoes {
             grid-template-columns: 1fr;
         }
-
-        /* empilha no celular */
     }
 
     .posicionamento {
@@ -1861,8 +2060,12 @@ body:has(dialog[open]) {
         text-align: center;
     }
 
+    .agenda3 {
+        padding-bottom: 1rem;
+    }
+
     .agenda3 img {
-        width: 30rem;
+        width: 22rem;
         height: 37rem;
         object-fit: cover;
         border: 2px solid #1E4D59;
@@ -1881,13 +2084,13 @@ body:has(dialog[open]) {
 
     .duvidasInicio h6 {
         color: #8C5A37;
-        padding-top: 5rem;
+        padding-top: 2rem;
         padding-bottom: 2rem;
         padding-left: 5.5rem;
     }
 
     .duvidasCards {
-          display: flex;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -1900,12 +2103,13 @@ body:has(dialog[open]) {
         justify-content: center;
         align-items: center;
         background-color: transparent;
-        width: 25.25rem;
-        height: 18.75rem;
+        width: 20rem;
+        height: auto;
         border-radius: 1rem;
         padding: 1rem;
         box-shadow: 0.75rem -0.75rem 0 #1E4D59;
         border: 3px solid #1E4D59;
+        text-align: justify;
     }
 
     .cardDuvida h6 {
@@ -1953,12 +2157,15 @@ body:has(dialog[open]) {
         color: #24140D;
         font-weight: 700;
         font-size: 2rem;
-        padding-left: 4.5rem;
+        margin-left: 0 !important;
+        padding-left: 0 !important;
         padding: 1.5rem 4.5rem;
+        width: 30rem !important;
+        text-align: center !important;
     }
 
     .alinhamentoDF {
-          display: flex;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -1981,6 +2188,7 @@ body:has(dialog[open]) {
         flex-direction: column;
         justify-content: center;
         padding: 1rem;
+        text-align: justify;
     }
 
     .cardsDF h4 {
@@ -1988,94 +2196,113 @@ body:has(dialog[open]) {
     }
 
     .DFinicio {
-        width: 23.75rem;
+        width: 23.1875rem;
+        height: auto;
     }
 
     .DFmeio {
-        width: 39.0625rem;
+        width: 23.1875rem;
+        height: auto;
     }
 
     .DFfim {
-        width: 19.4375rem;
+        width: 23.1875rem;
+        height: auto;
     }
 
-    #localizacao {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+    /*Localização*/
+#localizacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
 
-    #localizacao img {
-        width: 25.8125rem;
-        height: 19rem;
-        object-fit: cover;
-        border-radius: 1rem;
-    }
+#localizacao h5 {
+    width: auto !important;         
+    margin: 0 !important;
+    padding: 1.5rem 0 1rem;
+    font-weight: 700;
+    text-align: center !important;
+}
 
-    .locimg {
-        border: 3px solid #24140D;
-    }
+.alinhamentoDFMobile {
+    width: 100%;                       
+}
 
-    #localizacao h5 {
-        padding-top: 3rem;
-        font-weight: 700;
-    }
+.locDF {
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    grid-template-rows: 1fr auto auto auto 1fr auto;
+    grid-template-areas:
+        "foto ."
+        "foto rotulo"
+        "foto titulo"
+        "foto botao"
+        "foto ."
+        "texto texto";
+    gap: 0 1rem;                     
+    padding: 0 0.5rem 1.5rem;
+    box-sizing: border-box;
+}
 
-    .locDF {
-         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 3rem;
-        padding-bottom: 3rem;
-    }
+.locDFmeio {
+    display: contents;                 
+}
 
-    .locDFmeio {
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-    }
+#localizacao .locDF img {
+    grid-area: foto;
+    align-self: center;
+    width: 100%;
+    height: auto;
+    border-radius: 0;                 
+}
 
-    .locDFmeio p {
-        width: 19rem;
-        text-align: justify;
-        height: 3.5625rem;
-    }
+.locDFmeio h6 {
+    grid-area: rotulo;
+    margin: 0;
+    font-size: 0.875rem;
+    color: #8C5A37;
+}
 
-    .locDFmeio h3 {
-        color: #24140D;
-        font-weight: 700;
-        display: flex;
-        justify-content: start;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        margin: 0;
-        font-size: 1.5rem;
-    }
+.locDFmeio h3 {
+    grid-area: titulo;
+    display: block;
+    margin: 0.25rem 0 0.5rem;
+    padding: 0;
+    font-size: 1.25rem;
+    line-height: 1.15;
+}
 
-    .locDFmeio h6 {
-        color: #8C5A37;
-        padding: 0;
-    }
+.locDFmeio a {
+    grid-area: botao;
+    justify-self: start;
+    text-decoration: none;
+}
 
-    .locDFmeio button {
-        margin-top: 1rem;
-        border-radius: 1rem;
-        background-color: #8C5A37;
-        color: #F6F1EA;
-        font-size: 0.8rem;
-        padding: 0.7rem;
-        border: none;
-    }
+.locDFmeio button {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+}
 
-    .locDFmeio a {
-        display: inline-block;
-        justify-content: center;
-        align-items: center;
-        align-self: center;
-        text-decoration: none;
-    }
+.locDFmeio p {
+    grid-area: texto;
+    width: auto;                   
+    height: auto;                     
+    margin: 1rem 0 0;
+    text-align: justify;
+}
+
+#localizacao .locimg {
+    display: block;
+    width: calc(100% - 1rem);
+    max-width: 30rem;
+    height: auto;
+    margin: 0 auto 1.5rem;
+    border: 3px solid #24140D;
+    border-radius: 1rem;
+}
 
     /*Sobre Mim*/
 
@@ -2089,7 +2316,7 @@ body:has(dialog[open]) {
     }
 
     .sobreMim {
-         display: flex;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -2097,8 +2324,8 @@ body:has(dialog[open]) {
     }
 
     .sobreMim img {
-        width: 46.5625rem;
-        height: 26.25rem;
+        width: 24rem;
+        height: 16.3125rem;
         object-fit: cover;
         border-radius: 1rem;
     }
@@ -2111,11 +2338,11 @@ body:has(dialog[open]) {
         color: #24140D;
         font-weight: 700;
         font-size: 2rem;
-        width: 33rem;
+        width: 21.3125rem;
     }
 
     .sobreMim p {
-        width: 29rem;
+        width: 21.3125rem;
         color: rgba(0, 0, 0, 0.85);
         text-align: justify;
         padding-top: 0.5rem;
@@ -2138,12 +2365,22 @@ body:has(dialog[open]) {
     }
 
     .saibaBotao {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none !important;
+        font-size: 1rem;
         background-color: #7D8F69 !important;
         color: #F6F1EA;
         width: 6.875rem;
+        height: auto;
         border-radius: 1rem;
         border: none;
     }
+
+    .alinhamentoSM a {
+    text-decoration: none;
+}
 
     .sobreMim i {
         color: #F6F1EA;
@@ -2166,7 +2403,7 @@ body:has(dialog[open]) {
     }
 
     .moveSM {
-         display: flex;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -2245,87 +2482,116 @@ body:has(dialog[open]) {
         padding-left: 0;
     }
 
+
     /*Footer*/
-    #footerrodape {
-        background-color: #D6B8A7;
-    }
+#footerrodape {
+    --fonte-rodape: 9px;          /* mude só aqui (11px) */
+    background-color: #D6B8A7;
+}
 
-    .rodape {
-          display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding-top: 3rem;
-        gap: 8rem;
-    }
+.rodape {
+    display: grid;
+    /* sem o logo no HTML: */
+    grid-template-columns: 1.2fr 1fr 1.3fr;
+    /* se o logo ainda estiver no HTML, troque a linha acima por:
+       grid-template-columns: auto 1.2fr 1fr 1.3fr; */
+    align-items: flex-start;
+    padding: 1rem 0.75rem 0;
+    gap: 0.5rem;
+}
 
-    .rodape img {
-        border-radius: 100%;
-        width: 5.25rem;
-        height: 5.25rem;
-        object-fit: cover;
-    }
+.rodape img {
+    border-radius: 100%;
+    width: 2.25rem;
+    height: 2.25rem;
+    object-fit: cover;
+}
 
-    .rodape button {
-        border: none;
-        border-radius: 1rem;
-        background-color: #8C5A37;
-        color: #F6F1EA;
-        padding: 0.5rem;
-        width: 14.875rem;
-    }
+.rNavegue {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;                       /* a coluna nunca passa da grade */
+    padding-bottom: 0.5rem;
+}
 
-    .rodape h6 {
-        color: #8C5A37;
-    }
+.tamanhoRNavegue {
+    width: 7.5rem !important;
+    max-width: 100%;                    /* em telas estreitas não invade a coluna do lado */
+}
 
-    .rodape p {
-        width: 18rem;
-    }
+.rodape h6 {
+    margin: 0 0 0.5rem;
+    font-size: var(--fonte-rodape);
+    color: #8C5A37;
+}
 
-    .rNavegue {
-        display: flex;
-        flex-direction: column;
-        padding-bottom: 2rem;
-    }
+.rodape p {
+    width: auto;
+    margin: 0 0 0.75rem;
+    font-size: var(--fonte-rodape);
+}
 
-    .rNavegue a {
-        text-decoration-color: #6D2E46;
-        padding: 0.25rem;
-        color: rgba(0, 0, 0, 0.85);
-    }
+.rodape button {
+    border: none;
+    border-radius: 1rem;
+    background-color: #8C5A37;
+    color: #F6F1EA;
+    padding: 0.6rem 0.75rem;
+    width: auto;
+    max-width: 100%;
+    font-size: var(--fonte-rodape);
+}
 
-    .falerodape {
-        display: flex;
-        align-items: baseline;
-        gap: 0;
-        flex-wrap: wrap;
-        padding-bottom: 0.5rem;
-    }
+.rNavegue li {
+    padding: 0.1rem 0;
+    font-size: var(--fonte-rodape);
+}
 
-    .falerodape p {
-        width: auto !important;
-        margin: 0;
-    }
+.rNavegue a {
+    padding: 0;
+    font-size: var(--fonte-rodape);
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.85);
+    overflow-wrap: anywhere;            /* o @ do Instagram quebra em vez de vazar */
+}
 
-    .falerodape a {
-        margin: 0;
-    }
+.falerodape {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0.25rem;
+}
 
-    .rodapeAli {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        padding-top: 1rem;
-    }
+.falerodape p {
+    width: auto !important;
+    margin: 0;
+    font-size: var(--fonte-rodape);
+}
 
-    .rodapeAli a {
-        text-decoration: none;
-    }
+.falerodape a {
+    margin: 0;
+    font-size: var(--fonte-rodape);
+    text-align: justify;
+}
 
+.rodapeAli {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    padding-top: 0.5rem;
+}
 
+.rodapeAli p {
+    margin: 0;
+    font-size: var(--fonte-rodape);
+}
+
+.rodapeAli a {
+    text-decoration: none;
+    font-size: var(--fonte-rodape);
+}
     .modalModelo {
         width: 100vw;
         max-width: 100vw;

@@ -1,3 +1,46 @@
+/*Enter avança para o próximo campo*/
+
+document.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" || e.isComposing) return;
+
+    const atual = e.target;
+    const form = atual.closest("#formAgendamento");
+    if (!form) return;
+    if (atual.tagName === "TEXTAREA" || atual.tagName === "BUTTON") return;
+
+    e.preventDefault();
+
+    const campos = [...form.querySelectorAll("input, select, textarea")]
+        .filter(c => !c.disabled && !c.closest("[hidden]"));
+
+    const proximo = campos[campos.indexOf(atual) + 1];
+    if (proximo) proximo.focus();
+});
+
+
+/*Menu mobile*/
+
+const menuBtn   = document.getElementById("menuBtn");
+const menuLista = document.getElementById("menuLista");
+
+function fecharMenu() {
+    menuLista.classList.remove("aberto");
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.setAttribute("aria-label", "Abrir menu");
+}
+
+menuBtn.addEventListener("click", function () {
+    const abrir = !menuLista.classList.contains("aberto");
+    menuLista.classList.toggle("aberto", abrir);
+    menuBtn.setAttribute("aria-expanded", abrir);
+    menuBtn.setAttribute("aria-label", abrir ? "Fechar menu" : "Abrir menu");
+});
+
+// fecha ao escolher um link, ao tocar fora, com Esc ou ao voltar para a tela grande
+menuLista.addEventListener("click", e => { if (e.target.closest("a")) fecharMenu(); });
+document.addEventListener("click", e => { if (!e.target.closest(".navegador")) fecharMenu(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") fecharMenu(); });
+window.addEventListener("resize", () => { if (window.innerWidth > 768) fecharMenu(); });
 /*Rolagem suave + link ativo no menu*/
 
 const navegador = document.querySelector(".navegador");
@@ -40,8 +83,8 @@ secoesComId.forEach(secao => observador.observe(secao));
 /*Filtro de modelos*/
 
 const botoesFiltro = document.querySelectorAll(".botaoseletor button");
-const cardsModelo  = document.querySelectorAll(".CardmodeloTranca");
-const avisoVazio   = document.getElementById("semModelos");
+const cardsModelo = document.querySelectorAll(".CardmodeloTranca");
+const avisoVazio = document.getElementById("semModelos");
 
 botoesFiltro.forEach(botao => {
     botao.addEventListener("click", function () {
@@ -70,22 +113,22 @@ botoesFiltro.forEach(botao => {
 // Edite aqui: estilo -> tamanho -> espessuras
 const CATALOGO = {
     "Box Braids": {
-        "Chanel":  ["Fina", "Média", "Grossa"],
-        "Médio":   ["Fina", "Média", "Grossa"],
+        "Chanel": ["Fina", "Média", "Grossa"],
+        "Médio": ["Fina", "Média", "Grossa"],
         "Cintura": ["Média", "Grossa"]
     },
     "Goddess Braids": {
-        "Chanel":  ["Fina", "Média"],
-        "Médio":   ["Fina", "Média"],
+        "Chanel": ["Fina", "Média"],
+        "Médio": ["Fina", "Média"],
         "Cintura": ["Média"]
     }
-    // estilos fora da lista não mostram tamanho nem espessura
+  
 };
 
-const selServico   = document.getElementById("servico");
-const selTamanho   = document.getElementById("tamanho");
+const selServico = document.getElementById("servico");
+const selTamanho = document.getElementById("tamanho");
 const selEspessura = document.getElementById("espessura");
-const boxTamanho   = document.getElementById("campoTamanho");
+const boxTamanho = document.getElementById("campoTamanho");
 const boxEspessura = document.getElementById("campoEspessura");
 
 // preenche um select com opções, ou esconde o campo se não houver
@@ -114,136 +157,212 @@ selTamanho.addEventListener("change", function () {
     preencher(selEspessura, boxEspessura, espessuras, "a espessura");
 });
 
-/*Mensagem para o WhatsApp */
+
+/*Mensagem para o WhatsApp + validação*/
+
 
 const NUMERO = "5534991508682"; // 55 + DDD + número, só dígitos
 
-const campoData = document.getElementById("data");
-campoData.min = new Date().toISOString().split("T")[0];   // bloqueia datas passadas
+const formulario = document.getElementById("formAgendamento");
+const campoNome  = document.getElementById("nome");
+const campoData  = document.getElementById("data");
+const campoHora  = document.getElementById("horario");
+const modalEnvio = document.getElementById("modalEnvio");
 
-document.getElementById("formAgendamento").addEventListener("submit", function (e) {
-    e.preventDefault();
+// data mínima = hoje, no horário local
+const hoje = new Date();
+campoData.min = `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, "0")}-${String(hoje.getDate()).padStart(2, "0")}`;
 
-    const nome       = document.getElementById("nome").value.trim();
-    const whatsapp   = document.getElementById("whatsapp").value.trim();
-    const data       = campoData.value.split("-").reverse().join("/");
-    const horario    = document.getElementById("horario").value;
+function abrirConfirmacao(dados, url) {
+    const resumo = document.getElementById("envioResumo");
+    resumo.innerHTML = "";
+
+    [["Nome", dados.nome], ["Serviço", dados.servico], ["Data", dados.data], ["Horário", dados.horario]]
+        .forEach(([rotulo, valor]) => {
+            const li = document.createElement("li");
+            const negrito = document.createElement("strong");
+            negrito.textContent = rotulo + ": ";
+            li.append(negrito, valor);
+            resumo.append(li);
+        });
+
+    document.getElementById("envioLink").href = url;
+    modalEnvio.showModal();
+}
+
+document.getElementById("envioFechar").addEventListener("click", () => modalEnvio.close());
+modalEnvio.addEventListener("click", e => { if (e.target === modalEnvio) modalEnvio.close(); });
+
+function enviarSolicitacao() {
+    const nome    = campoNome.value.trim();
+    const data    = campoData.value;
+    const horario = campoHora.value;
+
+    // campos obrigatórios que estão vazios
+    const faltando = [];
+    if (!nome)    faltando.push({ rotulo: "Nome completo", el: campoNome });
+    if (!data)    faltando.push({ rotulo: "Data", el: campoData });
+    if (!horario) faltando.push({ rotulo: "Horário", el: campoHora });
+
+    if (faltando.length) {
+        alert("Preencha os campos obrigatórios:\n\n• " + faltando.map(f => f.rotulo).join("\n• "));
+        faltando[0].el.focus();
+        return;
+    }
+
+    if (data < campoData.min) {
+        alert("Escolha uma data a partir de hoje.");
+        campoData.focus();
+        return;
+    }
+
+    const whatsapp   = document.getElementById("whatsapp").value.trim() || "não informado";
     const observacao = document.getElementById("observacao").value.trim();
 
-    const partes = [selServico.value, selTamanho.value, selEspessura.value].filter(Boolean);
-    const servico = partes[0] + (partes.length > 1 ? " (" + partes.slice(1).join(", ") + ")" : "");
+    const partes  = [selServico.value, selTamanho.value, selEspessura.value].filter(Boolean);
+    const servico = partes.length
+        ? partes[0] + (partes.length > 1 ? " (" + partes.slice(1).join(", ") + ")" : "")
+        : "não informado";
+
+    const dataBR = data.split("-").reverse().join("/");
 
     const mensagem =
         "Olá! Gostaria de solicitar um agendamento.\n\n" +
         "Nome: " + nome + "\n" +
         "WhatsApp: " + whatsapp + "\n" +
         "Serviço: " + servico + "\n" +
-        "Data: " + data + "\n" +
+        "Data: " + dataBR + "\n" +
         "Horário: " + horario + "\n" +
         "Observações: " + (observacao || "nenhuma");
 
-    window.location.href = "https://wa.me/" + NUMERO + "?text=" + encodeURIComponent(mensagem);
-});
+    const url = "https://wa.me/" + NUMERO + "?text=" + encodeURIComponent(mensagem);
+    abrirConfirmacao({ nome, servico, data: dataBR, horario }, url);
+}
+
+// a verificação só acontece no clique do botão
+document.getElementById("btnEnviar").addEventListener("click", enviarSolicitacao);
+
+// garantia: o Enter nunca envia o formulário
+formulario.addEventListener("submit", e => e.preventDefault());
 
 /*Saiba Mais*/
 
-// Atalho para modelos com 3 espessuras: monta os 3 caminhos a partir de um nome-base.
-// Ex.: espessuras("box-chanel") -> img/espessuras/box-chanel-fina.jpeg, -media.jpeg, -grossa.jpeg
-function espessuras(base) {
-    return [
-        { src: `img/espessuras/${base}-fina.jpeg`,   legenda: "Fina" },
-        { src: `img/espessuras/${base}-media.jpeg`,  legenda: "Média" },
-        { src: `img/espessuras/${base}-grossa.jpeg`, legenda: "Grossa" }
-    ];
-}
-
-// A chave de cada modelo é igual ao data-modelo do botão no HTML.
-// servico  = texto exato da opção do select "Serviço desejado"
-// tamanho  = (opcional) texto exato da opção do select "Tamanho"
 const MODELOS = {
     "boxeadora": {
         servico: "Boxeadora",
         titulo: "Boxeadora",
-        descricao: "[Descreva o modelo]",
         fotos: [{ src: "img/Boxeadora.jpeg", legenda: "Boxeadora" }],
-        detalhes: ["[Duração]", "[Manutenção]"]
     },
     "boxTamChanel": {
         servico: "Box Braids", tamanho: "Chanel",
         titulo: "Box Braids · Tamanho Chanel",
-        descricao: "[Descreva o modelo]",
-        fotos: espessuras("box-chanel"),
-        detalhes: ["[Duração]", "[Manutenção]"]
+        descricao: "",
+        fotos: [
+            { src: "img/BoxEspP.jpeg", legenda: "P - R$400,00" },
+            { src: "img/BoxEspM.jpeg", legenda: "M - R$380,00" },
+            { src: "img/BoxEspG.jpeg", legenda: "G - R$360,00" }
+        ],
+        detalhes: [""]
     },
     "boxTamMedio": {
         servico: "Box Braids", tamanho: "Médio",
         titulo: "Box Braids · Tamanho Médio",
-        descricao: "[Descreva o modelo]",
-        fotos: espessuras("box-medio"),
-        detalhes: ["[Duração]", "[Manutenção]"]
+        fotos: [
+            { src: "img/BoxEspP.jpeg", legenda: "P - R$430,00" },
+            { src: "img/BoxEspM.jpeg", legenda: "M - R$380,00" },
+            { src: "img/BoxEspG.jpeg", legenda: "G - R$360,00" }
+        ],
     },
     "boxTamCintura": {
         servico: "Box Braids", tamanho: "Cintura",
         titulo: "Box Braids · Tamanho Cintura",
-        descricao: "[Descreva o modelo]",
-        fotos: espessuras("box-cintura"),
-        detalhes: ["[Duração]", "[Manutenção]"]
+        fotos: [
+            { src: "img/BoxEspP.jpeg", legenda: "P - R$500,00" },
+            { src: "img/BoxEspM.jpeg", legenda: "M - R$450,00" },
+            { src: "img/BoxEspG.jpeg", legenda: "G - R$400,00" }
+        ],
     },
     "GhanaBraids": {
         servico: "Ghana Braids",
         titulo: "Ghana Braids",
-        descricao: "[Descreva o modelo]",
-        fotos: [{ src: "img/GhanaBraids.jpeg", legenda: "Ghana Braids" }],
-        detalhes: ["[Duração]", "[Manutenção]"]
+        fotos: [
+            { src: "img/GhanaBraids.jpeg", legenda: "Fina" }
+        ],
     },
     "GhanaBraidsCcachos": {
         servico: "Ghana Braids",
         titulo: "Ghana Braids com Cachos",
-        descricao: "[Descreva o modelo]",
         fotos: [{ src: "img/GhanaBraidsCcachos.jpeg", legenda: "Com cachos" }],
-        detalhes: ["[Duração]", "[Manutenção]"]
     },
     "GoddessTamChanel": {
         servico: "Goddess Braids", tamanho: "Chanel",
         titulo: "Goddess Braids · Tamanho Chanel",
-        descricao: "[Descreva o modelo]",
-        fotos: espessuras("goddess-chanel"),
-        detalhes: ["[Duração]", "[Manutenção]"]
+        fotos: [
+            { src: "img/GoddesEspP.jpeg", legenda: "P - R$460,00" },
+            { src: "img/GoddesEspM.jpeg", legenda: "M - R$440,00" },
+            { src: "img/GoddesEspG.jpeg", legenda: "G - R$400,00" }
+        ],
     },
     "GoddessTamMedia": {
         servico: "Goddess Braids", tamanho: "Médio",
         titulo: "Goddess Braids · Tamanho Médio",
-        descricao: "[Descreva o modelo]",
-        fotos: espessuras("goddess-medio"),
-        detalhes: ["[Duração]", "[Manutenção]"]
+        descricao: "",
+        fotos: [
+            { src: "img/GoddesEspP.jpeg", legenda: "P - R$480,00" },
+            { src: "img/GoddesEspM.jpeg", legenda: "M - R$450,00" },
+            { src: "img/GoddesEspG.jpeg", legenda: "G - R$400,00" }
+        ],
+        detalhes: [""]
     },
     "GoddessTamCintura": {
         servico: "Goddess Braids", tamanho: "Cintura",
         titulo: "Goddess Braids · Tamanho Cintura",
-        descricao: "[Descreva o modelo]",
-        fotos: espessuras("goddess-cintura"),
-        detalhes: ["[Duração]", "[Manutenção]"]
+        descricao: "",
+        fotos: [
+            { src: "img/GoddesEspP.jpeg", legenda: "P - R$550,00" },
+            { src: "img/GoddesEspM.jpeg", legenda: "M - R$500,00" },
+            { src: "img/GoddesEspG.jpeg", legenda: "G - R$450,00" }
+        ],
+        detalhes: [""]
+    },
+    "GypsyEspessuraP": {
+        servico: "Gypsy Braids", tamanho: "Cintura",
+        titulo: "Gypsy Braids · Tamanho Cintura",
+        fotos: [
+            { src: "img/GypsyEspP.jpeg", legenda: "P - R$560,00" },
+        ],
+    },
+    "GypsyEspessuraM": {
+        servico: "Gypsy Braids", tamanho: "Cintura",
+        titulo: "Gypsy Braids · Tamanho Cintura",
+        fotos: [
+            { src: "img/GypsyEspM.jpeg", legenda: "M - R$500,00" },
+        ],
+    },
+    "GypsyEspessuraG": {
+        servico: "Gypsy Braids", tamanho: "Cintura",
+        titulo: "Gypsy Braids · Tamanho Cintura",
+        fotos: [
+            { src: "img/GypsyEspG.jpeg", legenda: "G - R$460,00"}
+        ]
     },
     "NagoMasculina": {
         servico: "Nagô",
         titulo: "Nagô Masculina",
-        descricao: "[Descreva o modelo]",
         fotos: [{ src: "img/NagoMasculina.jpeg", legenda: "Nagô Masculina" }],
-        detalhes: ["[Duração]", "[Manutenção]"]
     },
     "NagoTira": {   // chave igual ao seu HTML (data-modelo="NagoTira")
         servico: "Nagô",
         titulo: "Nagô Tiara",
-        descricao: "[Descreva o modelo]",
         fotos: [{ src: "img/NagoTiara.jpeg", legenda: "Nagô Tiara" }],
-        detalhes: ["[Duração]", "[Manutenção]"]
     },
     "NagoTopo": {
         servico: "Nagô",
         titulo: "Nagô Topo",
-        descricao: "[Descreva o modelo]",
-        fotos: [{ src: "img/NagoTopo1.jpeg", legenda: "Nagô Topo" }],
-        detalhes: ["[Duração]", "[Manutenção]"]
+        fotos: [
+            { src: "img/NagoTopo1.jpeg", legenda: "Nagô Topo Tipo 1" },
+            { src: "img/NagoTopo2.jpeg", legenda: "Nagô Topo Tipo 2" },
+        ],
     }
 };
 
@@ -291,11 +410,11 @@ modal.addEventListener("click", function (e) {
 // "Agendar este modelo": já preenche o formulário
 document.getElementById("modalAgendar").addEventListener("click", function () {
     selServico.value = this.dataset.servico;
-    selServico.dispatchEvent(new Event("change"));       // cria as opções de tamanho
+    selServico.dispatchEvent(new Event("change"));
 
     if (this.dataset.tamanho) {
         selTamanho.value = this.dataset.tamanho;
-        selTamanho.dispatchEvent(new Event("change"));   // cria as opções de espessura
+        selTamanho.dispatchEvent(new Event("change"));
     }
     modal.close();
 });

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://afropatos-yasminakila.pages.dev/sitemap.xml
