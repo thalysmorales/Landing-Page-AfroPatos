@@ -161,7 +161,7 @@ selTamanho.addEventListener("change", function () {
 /*Mensagem para o WhatsApp + validação*/
 
 
-const NUMERO = "5534991508682"; // 55 + DDD + número, só dígitos
+const NUMERO = "5534991743504"; // 55 + DDD + número, só dígitos
 
 const formulario = document.getElementById("formAgendamento");
 const campoNome  = document.getElementById("nome");
@@ -251,7 +251,7 @@ const MODELOS = {
     "boxeadora": {
         servico: "Boxeadora",
         titulo: "Boxeadora",
-        fotos: [{ src: "img/Boxeadora.jpeg", legenda: "Boxeadora" }],
+        fotos: [{ src: "img/Boxeadora.jpeg", legenda: "Boxeadora com Cachos - R$200,00 / Boxeadora sem Cachos - R$130,00" }],
     },
     "boxTamChanel": {
         servico: "Box Braids", tamanho: "Chanel",
@@ -286,13 +286,13 @@ const MODELOS = {
         servico: "Ghana Braids",
         titulo: "Ghana Braids",
         fotos: [
-            { src: "img/GhanaBraids.jpeg", legenda: "Fina" }
+            { src: "img/GhanaBraids.jpeg", legenda: "A partir de R$190,00 / OBS:.Os valores vão de acordo com o modelo escolhido e a quantidade de tranças" }
         ],
     },
     "GhanaBraidsCcachos": {
         servico: "Ghana Braids",
         titulo: "Ghana Braids com Cachos",
-        fotos: [{ src: "img/GhanaBraidsCcachos.jpeg", legenda: "Com cachos" }],
+        fotos: [{ src: "img/GhanaBraidsCcachos.jpeg", legenda: "A partir de R$250,00 / OBS:.Os valores vão de acordo com o modelo escolhido e a quantidade de tranças" }],
     },
     "GoddessTamChanel": {
         servico: "Goddess Braids", tamanho: "Chanel",
@@ -349,19 +349,21 @@ const MODELOS = {
     "NagoMasculina": {
         servico: "Nagô",
         titulo: "Nagô Masculina",
-        fotos: [{ src: "img/NagoMasculina.jpeg", legenda: "Nagô Masculina" }],
+        fotos: [{ src: "img/NagoMasculina.jpeg", legenda: "Cabelo Natural -> A partir de R$120,00" },
+            { src: "img/NagoMasculina.jpeg", legenda: "Com Alongamento -> A partir de R$150,00 dependendo do modelo escolhido" }
+        ],
     },
-    "NagoTira": {   // chave igual ao seu HTML (data-modelo="NagoTira")
+    "NagoTira": {  
         servico: "Nagô",
         titulo: "Nagô Tiara",
-        fotos: [{ src: "img/NagoTiara.jpeg", legenda: "Nagô Tiara" }],
+        fotos: [{ src: "img/NagoTiara.jpeg", legenda: "A partir de R$90,00 / OBS:.Os valores vão de acordo com o modelo escolhido" }],
     },
     "NagoTopo": {
         servico: "Nagô",
         titulo: "Nagô Topo",
         fotos: [
-            { src: "img/NagoTopo1.jpeg", legenda: "Nagô Topo Tipo 1" },
-            { src: "img/NagoTopo2.jpeg", legenda: "Nagô Topo Tipo 2" },
+            { src: "img/NagoTopo1.jpeg", legenda: "A partir de R$40,00 / OBS:.Os valores vão de acordo com o modelo escolhido" },
+            { src: "img/NagoTopo2.jpeg", legenda: "A partir de R$40,00 / OBS:.Os valores vão de acordo com o modelo escolhido" },
         ],
     }
 };
