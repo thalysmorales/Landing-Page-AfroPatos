@@ -818,13 +818,13 @@ body {
 .cardDuvida {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;  
     align-items: center;
     background-color: transparent;
     width: 25.25rem;
-    height: 18.75rem;
+    min-height: 18.75rem;         
     border-radius: 1rem;
-    padding: 1rem;
+    padding: 1.5rem 1rem 1rem;   
     box-shadow: 0.75rem -0.75rem 0 #1E4D59;
     border: 3px solid #1E4D59;
 }
@@ -959,9 +959,30 @@ body {
 .locDFmeio p {
     width: 19rem;
     text-align: justify;
-    height: 3.5625rem;
+    height: auto;                  /* era 3.5625rem */
 }
 
+@media (min-width: 1280px) {
+    #localizacao {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: center;
+        align-items: center;
+        column-gap: 2rem;
+        padding-bottom: 3rem;
+    }
+
+    #localizacao h5 {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+
+    .locDF {
+        align-items: center;
+        gap: 2rem;
+        padding-bottom: 0;
+    }
+}
 .locDFmeio h3 {
     color: #24140D;
     font-weight: 700;
