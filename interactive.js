@@ -113,14 +113,26 @@ botoesFiltro.forEach(botao => {
 // Edite aqui: estilo -> tamanho -> espessuras
 const CATALOGO = {
     "Box Braids": {
-        "Chanel": ["Fina", "Média", "Grossa"],
-        "Médio": ["Fina", "Média", "Grossa"],
-        "Cintura": ["Média", "Grossa"]
+        "Chanel": ["Espessura P", "Espessura M", "Espessura G"],
+        "Médio": ["Espessura P", "Espessura M", "Espessura G"],
+        "Cintura": ["Espessura P","Espessura M", "Espessura G"]
     },
     "Goddess Braids": {
-        "Chanel": ["Fina", "Média"],
-        "Médio": ["Fina", "Média"],
-        "Cintura": ["Média"]
+        "Chanel": ["Espessura P", "Espessura M", "Espessura G"],
+        "Médio": ["Espessura P", "Espessura M", "Espessura G"],
+        "Cintura": ["Espessura P", "Espessura M", "Espessura G"]
+    },
+    "Ghana Braids": {
+        "Com Cachos": ["A definir com o profissional"],
+        "Sem Cachos":["A definir com o profissional"]
+    },
+    "Gypsy Braids": {
+        "Tamanho Único": ["Espessura P", "Espessura M", "Espessura G"]
+    },
+    "Nagô": {
+        "Nagô Masculina": ["Cabelo Natural", "Com Alongamento"],
+        "Nagô Tiara": ["A definir com o profissional"],
+        "Nagô Topo": ["A definir com o profissional"]
     }
   
 };
@@ -228,12 +240,12 @@ function enviarSolicitacao() {
 
     const mensagem =
         "Olá! Gostaria de solicitar um agendamento.\n\n" +
-        "Nome: " + nome + "\n" +
-        "WhatsApp: " + whatsapp + "\n" +
-        "Serviço: " + servico + "\n" +
-        "Data: " + dataBR + "\n" +
-        "Horário: " + horario + "\n" +
-        "Observações: " + (observacao || "nenhuma");
+        " Nome: " + nome + "\n" +
+        " WhatsApp: " + whatsapp + "\n" +
+        " Serviço: " + servico + "\n" +
+        " Data: " + dataBR + "\n" +
+        " Horário: " + horario + "\n" +
+        " Observações: " + (observacao || "nenhuma");
 
     const url = "https://wa.me/" + NUMERO + "?text=" + encodeURIComponent(mensagem);
     abrirConfirmacao({ nome, servico, data: dataBR, horario }, url);
