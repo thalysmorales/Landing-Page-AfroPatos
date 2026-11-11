@@ -20,7 +20,7 @@ document.addEventListener("keydown", function (e) {
 
 /*Menu mobile*/
 
-const menuBtn   = document.getElementById("menuBtn");
+const menuBtn = document.getElementById("menuBtn");
 const menuLista = document.getElementById("menuLista");
 
 function fecharMenu() {
@@ -112,29 +112,42 @@ botoesFiltro.forEach(botao => {
 
 // Edite aqui: estilo -> tamanho -> espessuras
 const CATALOGO = {
+    "Boxeadora": {
+        "Com Cachos": { "A definir com a profissional": 200 },
+        "Sem Cachos": { "A definir com a profissional": 130 }
+    },
     "Box Braids": {
-        "Chanel": ["Espessura P", "Espessura M", "Espessura G"],
-        "Médio": ["Espessura P", "Espessura M", "Espessura G"],
-        "Cintura": ["Espessura P","Espessura M", "Espessura G"]
+        "Chanel": { "Espessura P": 400, "Espessura M": 380, "Espessura G": 360 },
+        "Médio": { "Espessura P": 430, "Espessura M": 380, "Espessura G": 360 },
+        "Cintura": { "Espessura P": 500, "Espessura M": 450, "Espessura G": 400 }
     },
     "Goddess Braids": {
-        "Chanel": ["Espessura P", "Espessura M", "Espessura G"],
-        "Médio": ["Espessura P", "Espessura M", "Espessura G"],
-        "Cintura": ["Espessura P", "Espessura M", "Espessura G"]
+        "Chanel": { "Espessura P": 460, "Espessura M": 440, "Espessura G": 400 },
+        "Médio": { "Espessura P": 480, "Espessura M": 450, "Espessura G": 400 },
+        "Cintura": { "Espessura P": 550, "Espessura M": 500, "Espessura G": 450 }
     },
     "Ghana Braids": {
-        "Com Cachos": ["A definir com o profissional"],
-        "Sem Cachos":["A definir com o profissional"]
+        "Com Cachos": ["A definir com a profissional"],
+        "Sem Cachos": ["A definir com a profissional"]
     },
     "Gypsy Braids": {
-        "Tamanho Único": ["Espessura P", "Espessura M", "Espessura G"]
+        "Cintura": { "Espessura P": 560, "Espessura M": 500, "Espessura G": 460 }
     },
     "Nagô": {
         "Nagô Masculina": ["Cabelo Natural", "Com Alongamento"],
-        "Nagô Tiara": ["A definir com o profissional"],
-        "Nagô Topo": ["A definir com o profissional"]
+        "Nagô Tiara": ["A definir com a profissional"],
+        "Nagô Topo": ["A definir com a profissional"]
     }
-  
+
+};
+
+const VALOR_SEM_VARIACAO = {
+    "Ghana Braids|Sem Cachos": "a partir de R$190,00",
+    "Ghana Braids|Com Cachos": "a partir de R$250,00",
+    "Nagô|Nagô Masculina|Cabelo Natural": "a partir de R$120,00",
+    "Nagô|Nagô Masculina|Com Alongamento": "a partir de R$150,00",
+    "Nagô|Nagô Tiara": "a partir de R$90,00",
+    "Nagô|Nagô Topo": "a partir de R$40,00"
 };
 
 const selServico = document.getElementById("servico");
@@ -161,13 +174,37 @@ function preencher(select, caixa, opcoes, rotulo) {
 selServico.addEventListener("change", function () {
     const tamanhos = CATALOGO[selServico.value];
     preencher(selTamanho, boxTamanho, tamanhos && Object.keys(tamanhos), "o tamanho");
-    preencher(selEspessura, boxEspessura, null);   // limpa o nível abaixo
+    preencher(selEspessura, boxEspessura, null);
+
+    if (tamanhos && Object.keys(tamanhos).length === 1) {
+        selTamanho.value = Object.keys(tamanhos)[0];
+        selTamanho.dispatchEvent(new Event("change"));
+    }
 });
 
 selTamanho.addEventListener("change", function () {
     const espessuras = CATALOGO[selServico.value]?.[selTamanho.value];
-    preencher(selEspessura, boxEspessura, espessuras, "a espessura");
+    const opcoes = Array.isArray(espessuras) ? espessuras : espessuras && Object.keys(espessuras);
+    preencher(selEspessura, boxEspessura, opcoes, "a espessura");
 });
+
+function formatarReais(valor) {
+    return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
+
+function precoNumerico() {
+    const preco = CATALOGO[selServico.value]?.[selTamanho.value]?.[selEspessura.value];
+    return typeof preco === "number" ? preco : null;
+}
+
+function calcularValor() {
+    const preco = precoNumerico();
+    if (preco !== null) return formatarReais(preco);
+
+    const chave2 = [selServico.value, selTamanho.value].join("|");
+    const chave3 = chave2 + "|" + selEspessura.value;
+    return VALOR_SEM_VARIACAO[chave3] || VALOR_SEM_VARIACAO[chave2] || null;
+}
 
 
 /*Mensagem para o WhatsApp + validação*/
@@ -176,9 +213,9 @@ selTamanho.addEventListener("change", function () {
 const NUMERO = "5534991743504"; // 55 + DDD + número, só dígitos
 
 const formulario = document.getElementById("formAgendamento");
-const campoNome  = document.getElementById("nome");
-const campoData  = document.getElementById("data");
-const campoHora  = document.getElementById("horario");
+const campoNome = document.getElementById("nome");
+const campoData = document.getElementById("data");
+const campoHora = document.getElementById("horario");
 const modalEnvio = document.getElementById("modalEnvio");
 
 // data mínima = hoje, no horário local
@@ -189,7 +226,7 @@ function abrirConfirmacao(dados, url) {
     const resumo = document.getElementById("envioResumo");
     resumo.innerHTML = "";
 
-    [["Nome", dados.nome], ["Serviço", dados.servico], ["Data", dados.data], ["Horário", dados.horario]]
+    [["Nome", dados.nome], ["Serviço", dados.servico], ["Valor", dados.valor], ["Valor do Sinal", dados.vSinal], ["Data", dados.data], ["Horário", dados.horario]]
         .forEach(([rotulo, valor]) => {
             const li = document.createElement("li");
             const negrito = document.createElement("strong");
@@ -206,15 +243,16 @@ document.getElementById("envioFechar").addEventListener("click", () => modalEnvi
 modalEnvio.addEventListener("click", e => { if (e.target === modalEnvio) modalEnvio.close(); });
 
 function enviarSolicitacao() {
-    const nome    = campoNome.value.trim();
-    const data    = campoData.value;
+    const nome = campoNome.value.trim();
+    const data = campoData.value;
     const horario = campoHora.value;
 
-    // campos obrigatórios que estão vazios
     const faltando = [];
-    if (!nome)    faltando.push({ rotulo: "Nome completo", el: campoNome });
-    if (!data)    faltando.push({ rotulo: "Data", el: campoData });
+    if (!nome) faltando.push({ rotulo: "Nome completo", el: campoNome });
+    if (!data) faltando.push({ rotulo: "Data", el: campoData });
     if (!horario) faltando.push({ rotulo: "Horário", el: campoHora });
+    if (!boxTamanho.hidden && !selTamanho.value) faltando.push({ rotulo: "Tamanho", el: selTamanho });
+    if (!boxEspessura.hidden && !selEspessura.value) faltando.push({ rotulo: "Espessura", el: selEspessura });
 
     if (faltando.length) {
         alert("Preencha os campos obrigatórios:\n\n• " + faltando.map(f => f.rotulo).join("\n• "));
@@ -228,27 +266,31 @@ function enviarSolicitacao() {
         return;
     }
 
-    const whatsapp   = document.getElementById("whatsapp").value.trim() || "não informado";
     const observacao = document.getElementById("observacao").value.trim();
 
-    const partes  = [selServico.value, selTamanho.value, selEspessura.value].filter(Boolean);
+    const partes = [selServico.value, selTamanho.value, selEspessura.value].filter(Boolean);
     const servico = partes.length
         ? partes[0] + (partes.length > 1 ? " (" + partes.slice(1).join(", ") + ")" : "")
         : "não informado";
+
+    const preco = precoNumerico();
+    const valor = calcularValor() || "A combinar";
+    const vSinal = preco !== null ? formatarReais(preco * 0.3) : "A combinar com a Yasmin";
 
     const dataBR = data.split("-").reverse().join("/");
 
     const mensagem =
         "Olá! Gostaria de solicitar um agendamento.\n\n" +
-        " Nome: " + nome + "\n" +
-        " WhatsApp: " + whatsapp + "\n" +
-        " Serviço: " + servico + "\n" +
-        " Data: " + dataBR + "\n" +
-        " Horário: " + horario + "\n" +
-        " Observações: " + (observacao || "nenhuma");
+        "Nome: " + nome + "\n" +
+        "Serviço: " + servico + "\n" +
+        "Valor do serviço: " + valor + "\n" +
+        "Valor do sinal (30%): " + vSinal + "\n" +
+        "Data: " + dataBR + "\n" +
+        "Horário: " + horario + "\n" +
+        "Observações: " + (observacao || "nenhuma");
 
     const url = "https://wa.me/" + NUMERO + "?text=" + encodeURIComponent(mensagem);
-    abrirConfirmacao({ nome, servico, data: dataBR, horario }, url);
+    abrirConfirmacao({ nome, servico, valor, vSinal, data: dataBR, horario }, url);
 }
 
 // a verificação só acontece no clique do botão
@@ -355,17 +397,17 @@ const MODELOS = {
         servico: "Gypsy Braids", tamanho: "Cintura",
         titulo: "Gypsy Braids · Tamanho Cintura",
         fotos: [
-            { src: "img/GypsyEspG.jpeg", legenda: "G - R$460,00"}
+            { src: "img/GypsyEspG.jpeg", legenda: "G - R$460,00" }
         ]
     },
     "NagoMasculina": {
         servico: "Nagô",
         titulo: "Nagô Masculina",
         fotos: [{ src: "img/NagoMasculina.jpeg", legenda: "Cabelo Natural -> A partir de R$120,00" },
-            { src: "img/NagoMasculina.jpeg", legenda: "Com Alongamento -> A partir de R$150,00 dependendo do modelo escolhido" }
+        { src: "img/NagoMasculina.jpeg", legenda: "Com Alongamento -> A partir de R$150,00 dependendo do modelo escolhido" }
         ],
     },
-    "NagoTira": {  
+    "NagoTira": {
         servico: "Nagô",
         titulo: "Nagô Tiara",
         fotos: [{ src: "img/NagoTiara.jpeg", legenda: "A partir de R$90,00 / OBS:.Os valores vão de acordo com o modelo escolhido" }],
